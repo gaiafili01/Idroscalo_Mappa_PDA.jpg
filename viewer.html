@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<title>Idroscalo - Mappa PDA</title>
+<style>
+  html, body { margin: 0; padding: 0; height: 100%; background: #111; }
+  #viewer { width: 100%; height: 100vh; }
+  #info {
+    position: fixed; top: 10px; left: 10px; z-index: 10;
+    background: rgba(0,0,0,0.6); color: #fff; padding: 8px 12px;
+    font-family: sans-serif; font-size: 13px; border-radius: 6px;
+  }
+</style>
+</head>
+<body>
+
+<div id="info">Idroscalo_Mappa_PDA — usa la rotella per zoomare, trascina per spostarti</div>
+<div id="viewer"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/openseadragon/4.1.0/openseadragon.min.js"></script>
+<script>
+  // IMPORTANTE:
+  // Questa pagina deve trovarsi nella STESSA cartella del repository
+  // dove si trovano "TileGroup0" e "ImageProperties.xml"
+  // (cioè nella root del repo Idroscalo_Mappa_PDA).
+  //
+  // Se apri questo file da un altro percorso, modifica la riga
+  // "tileHost" qui sotto con il percorso corretto (o l'URL completo,
+  // ad es. tramite GitHub Pages).
+
+  var tileHost = "./"; // <-- cartella che contiene TileGroup0 e ImageProperties.xml
+
+  OpenSeadragon({
+    id: "viewer",
+    prefixUrl: "https://cdnjs.cloudflare.com/ajax/libs/openseadragon/4.1.0/images/",
+    tileSources: {
+      type: "zoomifytileservice",
+      width: 1920,
+      height: 1080,
+      tilesUrl: tileHost + "TileGroup0/"
+    },
+    showNavigator: true,
+    minZoomImageRatio: 0.5,
+    maxZoomPixelRatio: 4
+  });
+</script>
+
+</body>
+</html>
