@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Il mio sito - Immagine zoomabile</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            background: #000;
+            font-family: Arial, sans-serif;
+        }
+        #openseadragon-viewer {
+            width: 100%;
+            height: 100vh;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="openseadragon-viewer"></div>
+
+    <!-- Libreria OpenSeadragon caricata da CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/openseadragon/4.1.0/openseadragon.min.js"></script>
+    <script>
+        var viewer = OpenSeadragon({
+            id: "openseadragon-viewer",
+            prefixUrl: "https://cdnjs.cloudflare.com/ajax/libs/openseadragon/4.1.0/images/",
+            tileSources: {
+                type: "zoomifytileservice",
+                width: 1920,
+                height: 1080,
+                tilesUrl: "./"
+            },
+            showNavigator: true,
+            minZoomImageRatio: 0.9,
+            maxZoomPixelRatio: 2
+        });
+    </script>
+
+</body>
+</html>
